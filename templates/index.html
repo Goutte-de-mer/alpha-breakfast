@@ -22,22 +22,22 @@
         {% endfor %}
       </select>
     </div>
-    <div class="contact-input">
-      <div class="identity">
-        <div class="name">
-          <label for="name-input">Prénom :</label>
-          <input type="text" id="name-input" name="name" required />
-        </div>
-        <div class="lastname">
-          <label for="lastname-input">Nom :</label>
-          <input type="text" id="lastname-input" name="lastname" required />
-        </div>
+
+    <div class="identity">
+      <div class="name">
+        <label for="name-input">Prénom :</label>
+        <input type="text" id="name-input" name="name" required />
       </div>
-      <div class="email">
-        <label for="email-input">Email :</label>
-        <input type="email" id="email-input" name="email-input" required>
+      <div class="lastname">
+        <label for="lastname-input">Nom :</label>
+        <input type="text" id="lastname-input" name="lastname" required />
       </div>
     </div>
+    <div class="email">
+      <label for="email-input">Email :</label>
+      <input type="email" id="email-input" name="email-input" required>
+    </div>
+
     <div class="nbr-of-pple">
       <label for="people-select">Nombre de personnes :</label>
       <select name="people" id="people-select">
@@ -49,11 +49,10 @@
     </div>
 
     <!-- Autres champs du formulaire -->
-    <button type="submit">S'inscrire</button>
+    <button type="submit" class="submit-btn">S'inscrire</button>
   </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="/static/js/script.js"></script>
+
 </body>
 
 </html>
