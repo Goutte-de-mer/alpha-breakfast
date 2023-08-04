@@ -1,32 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
 
+/* Variables */
+:root {
+    --dark-green: #348e84;
+}
+
+/* Reset styles */
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Global styles */
+body {
     color: #414141;
+    font-size: 1rem;
+    font-weight: 300;
+    min-height: 100vh;
+}
+
+main.main-homepage {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== REGISTRATTION FORM CONTAINER ===== */
+
+.registration-form-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 68.75rem;
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    min-height: 450px;
+    align-items: stretch;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    overflow: hidden;
+}
+
+
+.info-side {
+    padding: 30px;
+    background-image: url(../img/croissants_cafe.jpg);
+    background-size: cover;
+    background-position: bottom;
+    width: 50%;
+    position: relative;
+    display: flex;
+}
+
+.info-side::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #348e8468;
+
+}
+
+.form-side {
+    width: 50%;
+    padding: 30px;
+}
+
+/* Titles */
+.main-homepage h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--dark-green);
+}
+
+span.smaller {
     font-size: 1rem;
 }
 
+/* Registration form */
 #registration-form {
-    padding: 30px 50px;
+    width: 500px;
+    padding: 15px 30px;
     display: flex;
     flex-direction: column;
-    width: 500px;
     row-gap: 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+/* Identity section */
 .identity {
     display: flex;
     column-gap: 15px;
 }
 
+/* Form labels and submit button */
+label,
+.submit-btn {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+/* Styled select input */
 select {
     background: none;
     border: none;
     padding: 10px;
     border-radius: 30px;
+    font-size: 1rem;
 }
 
+/* Styled text input */
 input:focus-visible,
 input:visited,
 input {
@@ -36,11 +132,29 @@ input {
     padding: 2px;
 }
 
+/* Submit button styles */
 .submit-btn {
     width: fit-content;
     padding: 10px 15px;
     border: 0;
     border-radius: 50px;
     cursor: pointer;
-    background: #cfbaf0;
+    background: var(--dark-green);
+    color: white;
+}
+
+/* Additional information section */
+#remaining-places-info {
+    padding: 5px;
+    text-align: center;
+}
+
+/* Styling for no places available */
+.no-places-available {
+    background: #ffa1a1;
+}
+
+/* Styling for places available */
+.places-available {
+    background: #b8ffa1;
 }

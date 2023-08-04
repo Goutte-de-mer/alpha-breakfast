@@ -10,7 +10,6 @@ class breakfast(db.Model):
 class reservations(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_breakfast = db.Column(db.Integer, db.ForeignKey("breakfast.id"), nullable=False)
-    date = db.Column(db.Date, nullable=False)
     nbr_of_people = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     lastname = db.Column(db.String(100), nullable=False)
