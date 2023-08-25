@@ -8,7 +8,10 @@ charset-normalizer==3.2.0
 click==8.1.4
 contourpy==1.1.0
 cycler==0.11.0
+dnspython==2.4.2
+email-validator==2.0.0.post2
 Flask==2.3.2
+Flask-Login==0.6.2
 Flask-SQLAlchemy==3.0.5
 fonttools==4.40.0
 greenlet==2.0.2

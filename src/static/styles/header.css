@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Global styles */
+body {
+    color: #414141;
+    font-size: 1rem;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
+/* Header container */
+header {
+    width: 25%;
+    max-width: 18.75rem;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* Logo */
+.logo-alpha {
+    max-width: 100%;
+    padding: 30px;
+}
+
+.logo-alpha img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Navbar */
+.nav-container {
+    padding: 30px;
+    padding-left: 0;
+    line-height: 3rem;
+}
+
+.main-menu-item {
+    margin-bottom: 15px;
+    transition: .2s ease;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.main-menu-item a {
+    text-decoration: none;
+    color: #414141;
+    width: 100%;
+    display: block;
+    padding: 8px 15px 10px 25px;
+}
+
+.main-menu-item>a {
+    font-size: 1.2rem;
+}
+
+.submenu {
+    padding-left: 15px;
+    height: 0;
+    opacity: 0;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.nav-container .main-menu-item:first-child a {
+    padding: 0 15px 0 25px;
+}
+
+.main-menu-item:active,
+.main-menu-item:hover {
+    background-color: white;
+}
+
+.main-menu-item:hover>.submenu {
+    height: 3rem;
+    opacity: 1;
+    transition-delay: 0.1s
+}
+
+
+.nav-container li a:hover {
+    color: #EFA054;
+}

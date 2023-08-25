@@ -40,10 +40,6 @@ main.main-homepage {
     min-height: 450px;
     align-items: stretch;
     border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
     overflow: hidden;
 }
 
@@ -100,10 +96,21 @@ span.smaller {
     row-gap: 20px;
 }
 
+.person {
+    transition: opacity 0.5s ease-in-out;
+    margin-bottom: 30px;
+}
+
+/* Title */
+.person h2 {
+    margin-bottom: 20px;
+}
+
 /* Identity section */
 .identity {
     display: flex;
     column-gap: 15px;
+    margin-bottom: 25px;
 }
 
 /* Form labels and submit button */
@@ -142,6 +149,11 @@ input {
     background: var(--dark-green);
     color: white;
 }
+
+
+
+
+
 
 /* Additional information section */
 #remaining-places-info {
