@@ -27,9 +27,9 @@
           <div class="date-select">
             <label for="date-select">Choisissez une date :</label>
             <select id="date-select" name="date-select">
-              <option value="" disabled selected>Choisissez une date</option>
-              {% for date in dates %}
-              <option value="{{ date }}">{{ date }}</option>
+              <option value="" disabled selected>---</option>
+              {% for event in opened_events %}
+              <option value="{{ event.id }}">{{ event.date }}</option>
               {% endfor %}
             </select>
 

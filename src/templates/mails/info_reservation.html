@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vos infos de réservation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
+
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        /* Global styles */
+        body {
+            color: #414141;
+            font-size: 15px;
+            font-size: 0.9375rem;
+            font-weight: 300;
+            min-height: 100vh;
+            padding: 25px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bonjour,</h1>
+    <p>Vous êtes bien inscrit pour l'événement du {{selected_date}}. Voici vos informations :</p>
+    <p>Nom : <strong>{{lastname}}</strong></p>
+    <p>Prénom : <strong>{{name}}</strong></p>
+    <p>Adresse mail : <strong>{{email}}</strong></p>
+    <p>Pensez à sauvegarder le lien ci dessous. Vous y trouverez un récapitulatif des événements auxquels vous êtes
+        inscrits. <a href="{{details_link}}">{{details_link}}</a></p>
+    <p>Cordialement,<br />Alpha Communication Impression</p>
+</body>
+
+</html>

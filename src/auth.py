@@ -17,6 +17,7 @@ def is_email(input_string):
         return False
 
 
+# ROUTES
 @auth.route("/signup")
 def signup():
     return render_template("signup.html")
@@ -42,6 +43,7 @@ def signup_post():
         lastname=lastname,
         username=username,
         password=generate_password_hash(password, method="sha256"),
+        role="admin",
     )
 
     db.session.add(new_user)
@@ -50,12 +52,12 @@ def signup_post():
     return redirect(url_for("auth.login"))
 
 
-@auth.route("/admin-login5049661")
+@auth.route("/login")
 def login():
     return render_template("login.html")
 
 
-@auth.route("/admin-login5049661", methods=["POST"])
+@auth.route("/login", methods=["POST"])
 def login_post():
     login = request.form.get("login")
     password = request.form.get("password")
@@ -72,7 +74,11 @@ def login_post():
         )  # if the user doesn't exist or password is wrong, reload the page
 
     login_user(user)
-    return redirect(url_for("main.admin_panel"))
+
+    if user.role == "client":
+        return redirect(url_for("main.client_account"))
+    elif user.role == "admin":
+        return redirect(url_for("main.admin_panel"))
 
 
 @auth.route("/logout")

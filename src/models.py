@@ -7,8 +7,8 @@ class Event(db.Model):
     title = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text, nullable=True)
     date = db.Column(db.Date, nullable=False)
-    start_time = db.Column(db.Time, nullable=False)
-    end_time = db.Column(db.Time, nullable=True)
+    start_time = db.Column(db.String(50), nullable=False)
+    duration = db.Column(db.String(50), nullable=True)
     capacity = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(100), nullable=False)
 
@@ -21,6 +21,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(100), nullable=False)
+    token = db.Column(db.String(255), nullable=True)
 
 
 # Table de liaison entre Event et User

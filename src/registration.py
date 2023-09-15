@@ -1,33 +1,23 @@
-import secrets
-import string
-import time, requests
-from flask import (
-    Blueprint,
-    redirect,
-    request,
-    jsonify,
-    render_template,
-    request,
-    url_for,
+from src.utils.utils_registration import (
+    generate_random_password,
+    generate_unique_token,
+    create_new_user,
+    send_registration_email,
+    add_participation,
 )
-from datetime import datetime
-from werkzeug.security import generate_password_hash
-
+from dotenv import load_dotenv
+from flask import Blueprint, request, jsonify, render_template, request
 from src.models import Event, Participation, User, db
 
 registration = Blueprint("registration", __name__)
+load_dotenv()
 
 
-def generate_random_password(length=8):
-    alphabet = string.ascii_letters + string.digits + string.punctuation
-    password = "".join(secrets.choice(alphabet) for _ in range(length))
-    return password
-
-
+# ROUTES
 @registration.route("/submit", methods=["POST"])
 def submit_form():
     response_message = []
-    existing_participation = None
+
     # Récupère les données du formulaire
     selected_date = request.form.get("date-select")
     names = request.form.getlist("name")
@@ -54,6 +44,8 @@ def submit_form():
         existing_user = User.query.filter_by(email=email).first()
 
         if existing_user:
+            unique_token = existing_user.token
+            # Si un utilisateur avec ce mail existe déjà, cherche s'il est déjà inscrit à cet événement
             existing_participation = Participation.query.filter_by(
                 event_id=event.id, user_id=existing_user.id
             ).first()
@@ -62,28 +54,19 @@ def submit_form():
                     f"Un utilisateur est déjà inscrit à cet événement avec cet email: {email}"
                 )
                 break
-            else:
-                user_id = existing_user.id
 
         else:
             random_password = generate_random_password()
-            new_user = User(
-                username=None,
-                name=name,
-                lastname=lastname,
-                password=generate_password_hash(random_password, method="sha256"),
-                email=email,
-                role="Client",
-            )
-            db.session.add(new_user)
-            db.session.flush()
-            user_id = new_user.id
+            unique_token = generate_unique_token(email)
 
-        if not existing_participation:
-            participation = Participation(
-                user_id=user_id, event_id=event.id, status=True
+            new_user = create_new_user(
+                name, lastname, email, random_password, unique_token
             )
-            db.session.add(participation)
+            existing_user = new_user
+
+        registration_link = f"http://127.0.0.1:5000/details-reservation/{unique_token}"
+        add_participation(existing_user, event)
+        send_registration_email(email, selected_date, name, lastname, registration_link)
 
     db.session.commit()
 
@@ -95,5 +78,36 @@ def submit_form():
 
 @registration.route("/success", methods=["GET"])
 def success():
-    # You can add any data you want to pass to the success.html template here
     return render_template("success.html")
+
+
+@registration.route("/details-reservation/<unique_token>")
+def user_reservation_details(unique_token):
+    # Récupère l'utilisateur correspondant au jeton unique
+    user = User.query.filter_by(token=unique_token).first()
+
+    if user:
+        # Récupère les participations de l'utilisateur
+        participations = Participation.query.filter_by(user_id=user.id).all()
+
+        event_info = []
+        for participation in participations:
+            event = Event.query.get(participation.event_id)
+            if event:
+                event_info.append(
+                    {
+                        "title": event.title,
+                        "description": event.description,
+                        "date": event.date,
+                        "start_time": event.start_time,
+                        "end_time": event.end_time,
+                        "capacity": event.capacity,
+                        "status": participation.status,
+                    }
+                )
+
+        return render_template(
+            "details_inscriptions.html", user=user, events=event_info
+        )
+    else:
+        return "Utilisateur non trouvé", 404

@@ -2,3 +2,127 @@
     width: 100%;
     padding: 50px 30px;
 }
+
+.profile-link {
+    color: #414141;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.page-title {
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.event {
+    padding: 20px 30px;
+    border-radius: 30px;
+    background-color: #FFF3DD;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.event-details .field:not(:last-child) {
+    margin-right: 40px;
+}
+
+.event-details .label,
+.edit-form label {
+    text-transform: uppercase;
+    color: #EFA054;
+}
+
+button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transition: .2s ease;
+    -webkit-transition: .2s ease;
+    -moz-transition: .2s ease;
+    -ms-transition: .2s ease;
+    -o-transition: .2s ease;
+}
+
+button i {
+    font-size: 1.1rem;
+    color: #414141;
+    transition: .2s ease;
+    -webkit-transition: .2s ease;
+    -moz-transition: .2s ease;
+    -ms-transition: .2s ease;
+    -o-transition: .2s ease;
+}
+
+button:hover,
+button:hover i {
+    color: #EFA054;
+}
+
+.edit-buttons {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    column-gap: 25px;
+}
+
+input {
+    margin-bottom: 15px;
+    color: #414141;
+    font-size: 1rem;
+    border-radius: 20px;
+    padding: 7px 10px;
+    border: none;
+    outline: none;
+}
+
+.input-group {
+    width: 50%;
+}
+
+.edit-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-btns {
+    display: flex;
+    column-gap: 50px;
+    margin-top: 20px;
+}
+
+.form-btns button {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 250px;
+}
+
+.dropdown-item:not(:last-of-type) {
+    margin-bottom: 15px;
+}
+
+.dropdown-menu button {
+    color: #414141;
+    font-size: 1rem;
+    font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

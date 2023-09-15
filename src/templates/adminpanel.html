@@ -1,7 +1,51 @@
-{% extends "base.html" %}
+{% extends "base_admin.html" %}
 
 {% block content %}
-<h1 class="title">
-    Bienvenue, {{ name }} !
-</h1>
+
+<a class="profile-link" href=""><i class="fa-solid fa-user"></i> {{name}}</a>
+
+<h1 class="page-title">événements</h1>
+<ul class="events-list">
+    {% for event in events %}
+    <li class="event">
+        <div class="event-details">
+            <span class="editable-field field" data-event-id="{{ event.id }}">
+                <span class="label">Date : </span> {{ event.date }}
+            </span>
+            <span class="remaining-places-info field"><span class="label">places restantes : </span> {{
+                calculate_remaining_places(event.id) }}</span>
+            <span class="editable-field field" data-event-id="{{ event.id }}">
+                <span class="label">Capacité : </span> {{ event.capacity }}
+            </span>
+            <span class="editable-field field" data-event-id="{{ event.id }}">
+                <span class="label">Début : </span> {{ event.start_time }}
+            </span>
+            <span class="editable-field field" data-event-id="{{ event.id }}">
+                {% if event.duration is not none and event.duration|length > 0 %}
+                <span class="label">Durée : </span> {{ event.duration }}
+                {% else %}
+                <span class="label">Durée : </span>
+                {% endif %}
+            </span>
+        </div>
+        <div class="edit-buttons">
+            <button class="edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            <div class="dropdown-menu">
+                <ul>
+                    <li class="dropdown-item"><button>Voir les participants <i
+                                class="fa-solid fa-user-group"></i></button></li>
+                    <li class="dropdown-item"><button>Annuler <i class="fa-solid fa-ban"></i></button></li>
+                    <li class="dropdown-item"><button>Supprimer <i class="fa-solid fa-trash-can"></i></button></li>
+
+                </ul>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
 {% endblock %}

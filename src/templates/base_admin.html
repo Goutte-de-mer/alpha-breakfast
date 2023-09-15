@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../static/styles/header.css">
+    <link rel="stylesheet" href="../static/styles/admin.css">
+    <script src="https://kit.fontawesome.com/d49321f612.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo-alpha">
+            <img src="../static/img/logo-alpha.png" alt="">
+        </div>
+        <ul class="nav-container">
+            <li class="main-menu-item"><a href="">Evénements</a>
+                <ul class="submenu">
+                    <li><a href="">Nouvel évenement</a></li>
+                </ul>
+            </li>
+            <li class="main-menu-item"><a href="">Emails</a></li>
+            <li class="main-menu-item"><a href="">Utilisateurs</a></li>
+            <li class="main-menu-item"><a href="">Profil</a></li>
+            <li class="main-menu-item"><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
+        </ul>
+    </header>
+
+    <div class="content-body">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/events.js"></script>
+</body>
+
+</html>

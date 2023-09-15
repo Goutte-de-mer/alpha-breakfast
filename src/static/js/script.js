@@ -1,9 +1,9 @@
-function updateRemainingPlaces(selectedDate) {
+function updateRemainingPlaces(eventId, url) {
   // Requête AJAX pour récupérer les places restantes
   $.ajax({
-    url: "/",
+    url: url,
     method: "POST",
-    data: { "date-select": selectedDate },
+    data: { "date-select": eventId },
     success: function (response) {
       $("#remaining-places-info").text(
         "Places restantes : " + response.remainingPlaces
@@ -19,13 +19,21 @@ function updateRemainingPlaces(selectedDate) {
 
 $("#date-select").change(function () {
   let selectedDate = $(this).val();
-  updateRemainingPlaces(selectedDate);
+
+  updateRemainingPlaces(selectedDate, "/");
 });
 
 $(document).ready(function () {
   // ============= RÉCUPÈRE LE NOMBRE DE PLACES RESTANTES
   let selectedDate = $("#date-select").val();
-  updateRemainingPlaces(selectedDate);
+
+  if (selectedDate == null) {
+    $("#remaining-places-info").text(
+      "Choisissez une date pour voir le nombre de places restantes"
+    );
+  } else {
+    updateRemainingPlaces(selectedDate, "/");
+  }
 
   // ============= AJOUTER UNE PERSONNE AU FORMULAIRE
   let personCount = 1;

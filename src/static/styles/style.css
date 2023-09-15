@@ -101,6 +101,10 @@ span.smaller {
     margin-bottom: 30px;
 }
 
+.person:last-child {
+    margin-bottom: 15px;
+}
+
 /* Title */
 .person h2 {
     margin-bottom: 20px;
@@ -150,23 +154,29 @@ input {
     color: white;
 }
 
+/* Add participant btn */
+.add-person-btn {
+    width: fit-content;
+    padding: 10px;
+    transition: .2s ease;
+    border-radius: 20px;
+    cursor: pointer;
+}
 
+.add-person-btn:hover {
+    background: #f7f2e2;
+}
 
-
-
+.add-person-btn:active {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+}
 
 /* Additional information section */
 #remaining-places-info {
     padding: 5px;
     text-align: center;
-}
-
-/* Styling for no places available */
-.no-places-available {
-    background: #ffa1a1;
-}
-
-/* Styling for places available */
-.places-available {
-    background: #b8ffa1;
 }
