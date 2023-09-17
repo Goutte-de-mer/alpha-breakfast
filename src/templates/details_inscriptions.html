@@ -25,8 +25,8 @@
             <strong>Date :</strong> {{ event.date }}<br>
             <strong>Heure de début :</strong> {{ event.start_time }}<br>
             <strong>Heure de fin :</strong> {{ event.end_time }}<br>
-            <strong>Statut de participation:</strong> {% if event.status == 1 %}Inscrit{% else %}Désinscrit{% endif
-            %}<br>
+            <strong>Statut de participation:</strong> {% if event.status == 1 %}Inscrit{% else %}Désinscrit{% endif %}
+            <br>
         </li>
         {% endfor %}
     </ul>
