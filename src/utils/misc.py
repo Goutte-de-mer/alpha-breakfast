@@ -37,3 +37,11 @@ def admin_required(f):
         return f(*args, **kwargs)
 
     return decorated_function
+
+
+# Add to database
+def create_new_entry(model, **kwargs):
+    new_entry = model(**kwargs)
+    db.session.add(new_entry)
+    db.session.flush()
+    return new_entry

@@ -1,0 +1,17 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+
+<a class="profile-link transition" href=""><i class="fa-solid fa-user"></i> {{name}}</a>
+
+<h1 class="page-title">Utilisateurs {%if user_type == 'clients' %} clients {% else %} employés {% endif %}</h1>
+
+{% if data %}
+<ul>
+    {% for user in data %}
+    <li>{{ user.name }} {{user.lastname }} - E-mail : {{user.email}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

@@ -1,7 +1,71 @@
+/* Global Styles */
 .content-body {
     width: 100%;
-    padding: 50px 30px;
+    padding: 50px;
+    position: relative;
+    max-width: 1400px;
 }
+
+.page-title {
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.transition {
+    transition: .2s ease;
+}
+
+/* Event List Styles */
+.events-list {
+    max-width: 75rem;
+    position: relative;
+}
+
+.event {
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Event Details Styles */
+.event-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fields {
+    height: fit-content;
+    margin: auto 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Orange background */
+.event-details,
+.edit-form {
+    padding: 20px 30px;
+    border-radius: 40px;
+    background-color: #FFF3DD;
+}
+
+/* Field Styles */
+.event-details .field {
+    margin-right: 50px;
+    font-size: .95rem;
+    white-space: nowrap;
+    line-height: 35px;
+}
+
+.event-details .label,
+.edit-form label,
+.status {
+    text-transform: uppercase;
+    color: #EFA054;
+    font-size: 0.95rem;
+}
+
+/* Button Styles */
 
 .profile-link {
     color: #414141;
@@ -11,65 +75,38 @@
     right: 20px;
 }
 
-.page-title {
-    text-transform: uppercase;
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-}
-
-.event {
-    padding: 20px 30px;
-    border-radius: 30px;
-    background-color: #FFF3DD;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.event-details .field:not(:last-child) {
-    margin-right: 40px;
-}
-
-.event-details .label,
-.edit-form label {
-    text-transform: uppercase;
-    color: #EFA054;
-}
-
 button {
     border: 0;
     background: none;
     cursor: pointer;
-    transition: .2s ease;
-    -webkit-transition: .2s ease;
-    -moz-transition: .2s ease;
-    -ms-transition: .2s ease;
-    -o-transition: .2s ease;
 }
 
 button i {
     font-size: 1.1rem;
     color: #414141;
-    transition: .2s ease;
-    -webkit-transition: .2s ease;
-    -moz-transition: .2s ease;
-    -ms-transition: .2s ease;
-    -o-transition: .2s ease;
 }
 
 button:hover,
-button:hover i {
+button:hover i,
+.profile-link:hover,
+.dropdown-menu .button:hover {
     color: #EFA054;
 }
 
+/* Edit Buttons Styles */
 .edit-buttons {
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     column-gap: 25px;
 }
 
+/* Status Styles */
+.status {
+    background-color: transparent;
+    border: none;
+    font-weight: 300;
+}
+
+/* Input Styles */
 input {
     margin-bottom: 15px;
     color: #414141;
@@ -84,11 +121,13 @@ input {
     width: 50%;
 }
 
+/* Edit Form Styles */
 .edit-form {
     display: flex;
     flex-wrap: wrap;
 }
 
+/* Form Button Styles */
 .form-btns {
     display: flex;
     column-gap: 50px;
@@ -103,26 +142,110 @@ input {
     font-weight: 300;
 }
 
+/* Menu Button Styles */
+.menu-btn {
+    padding: 7px;
+}
+
+/* Dropdown Menu Styles */
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 30px;
     background: white;
-    padding: 20px;
     border-radius: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: none;
+    padding: 20px;
+    position: absolute;
+    top: 100%;
     width: 250px;
+    z-index: 3;
+}
+
+.dropdown-menu button,
+.dropdown-menu .button {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 300;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.dropdown-menu .button {
+    color: #414141;
+    text-decoration: none;
+}
+
+
+.show-menu {
+    display: block;
 }
 
 .dropdown-item:not(:last-of-type) {
     margin-bottom: 15px;
 }
 
-.dropdown-menu button {
-    color: #414141;
-    font-size: 1rem;
-    font-weight: 300;
-    display: flex;
-    justify-content: space-between;
+/* Confirmation Message Styles */
+#confirmation-message {
+    height: 100vh;
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: none;
+}
+
+#confirmation-message .inner-block {
+    padding: 30px;
+    border-radius: 30px;
+    background-color: white;
+    margin: auto;
+}
+
+.no-participant-msg {
+    position: relative;
+    top: 100px;
+    text-align: center;
+    font-size: 2rem;
+    color: #f9bc80;
+}
+
+/* Animations */
+.valid-animation {
+    width: 90%;
+    max-width: 300px;
+    margin: auto;
+    border: 0;
+}
+
+.tumbleweed-animation {
+    border: 0;
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+/* Create event form */
+
+
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.form-input-container input,
+.event-status select {
+    background: #f6f7f9;
+    border-radius: 5px;
+    padding: 15px;
+    border: 0;
+    min-width: 240px;
+}
+
+.form-input-container label {
+    letter-spacing: 0.0313rem;
 }

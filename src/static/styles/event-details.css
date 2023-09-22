@@ -1,0 +1,62 @@
+/* Page event details */
+body {
+    padding: 50px;
+}
+
+li {
+    list-style: none;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.list-event-details .date {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.list-event-details .event-container {
+    padding: 10px;
+    background: linear-gradient(to bottom right, #FFAD5F, #bbd078);
+    width: fit-content;
+    border-radius: 20px;
+
+}
+
+.list-event-details .inner-container {
+    display: flex;
+    column-gap: 30px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+.date {
+    margin: auto 0;
+    font-weight: bold;
+    font-size: 1.2rem
+}
+
+.inner-container div {
+    line-height: 2rem;
+}
+
+.inner-container i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.separation {
+    height: 70px;
+    width: 3px;
+    background: linear-gradient(to bottom right, #FFAD5F, #bbd078);
+    border-radius: 15px;
+    margin: auto 0;
+}

@@ -30,3 +30,6 @@ class Participation(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey("event.id"), nullable=False)
     status = db.Column(db.Boolean, nullable=False)
+
+    user = db.relationship("User", backref="participations")
+    event = db.relationship("Event", backref="participants")

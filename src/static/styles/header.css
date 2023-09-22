@@ -27,6 +27,8 @@ header {
     background-color: #f9f9f9;
     min-height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 100vh;
+    position: fixed;
 }
 
 /* Logo */
@@ -54,7 +56,8 @@ header {
     border-bottom-right-radius: 50px;
 }
 
-.main-menu-item a {
+.main-menu-item a,
+.dropdown-menu-link {
     text-decoration: none;
     color: #414141;
     width: 100%;
@@ -62,23 +65,41 @@ header {
     padding: 8px 15px 10px 25px;
 }
 
-.main-menu-item>a {
+.main-menu-item>a,
+.dropdown-menu-link {
     font-size: 1.2rem;
+}
+
+.dropdown-menu-link {
+    cursor: pointer;
+    transition: color .2s ease;
+    -webkit-transition: color .2s ease;
+    -moz-transition: color .2s ease;
+    -ms-transition: color .2s ease;
+    -o-transition: color .2s ease;
+}
+
+.dropdown-menu-link i {
+    margin-left: 60px;
+    transition: transform .4s ease;
+    -webkit-transition: transform .4s ease;
+    -moz-transition: transform .4s ease;
+    -ms-transition: transform .4s ease;
+    -o-transition: transform .4s ease;
 }
 
 .submenu {
     padding-left: 15px;
-    height: 0;
-    opacity: 0;
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
+    display: none;
 }
 
-.nav-container .main-menu-item:first-child a {
+.dropdown-menu-link .submenu a {
     padding: 0 15px 0 25px;
+    transition: color .2s ease;
+    -webkit-transition: color .2s ease;
+    -moz-transition: color .2s ease;
+    -ms-transition: color .2s ease;
+    -o-transition: color .2s ease;
 }
 
 .main-menu-item:active,
@@ -86,13 +107,20 @@ header {
     background-color: white;
 }
 
-.main-menu-item:hover>.submenu {
-    height: 3rem;
-    opacity: 1;
-    transition-delay: 0.1s
+.active {
+    color: #EFA054;
+    background-color: white;
 }
 
-
-.nav-container li a:hover {
+.nav-container li a:hover,
+.dropdown-menu-link:hover {
     color: #EFA054;
+}
+
+.rotate-180 {
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
 }

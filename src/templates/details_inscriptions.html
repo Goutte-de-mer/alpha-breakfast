@@ -11,22 +11,37 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/d49321f612.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/event-details.css">
 </head>
 
 <body>
     <h1>Informations d'inscription pour {{ user.name }} {{ user.lastname }}</h1>
 
     <h2>Événements auxquels vous êtes inscrit :</h2>
-    <ul>
+    <ul class="list-event-details">
         {% for event in events %}
-        <li>
-            <strong>Titre :</strong> {{ event.title }}<br>
-            <strong>Date :</strong> {{ event.date }}<br>
-            <strong>Heure de début :</strong> {{ event.start_time }}<br>
-            <strong>Heure de fin :</strong> {{ event.end_time }}<br>
-            <strong>Statut de participation:</strong> {% if event.status == 1 %}Inscrit{% else %}Désinscrit{% endif %}
-            <br>
+        <li class="event-container">
+            <div class="inner-container">
+                <span class="date"> {{ event.date.strftime("%d") }} <br> {{ event.date.strftime("%b") }}</span>
+                <div class="separation"></div>
+                <div>
+                    <span class="location"><i class="fa-solid fa-location-dot"></i> 57 Rte de la Boissonnette 07340
+                        Peaugres</span> <br>
+                    <span class="start_time"><i class="fa-regular fa-clock"></i> {{ event.start_time }}</span><br>
+                    <span class="participation-status">
+                        {% if event.status == 1%}
+                        <i class="fa-regular fa-face-smile-beam"></i> Inscrit
+                        {% else %}
+                        <i class="fa-solid fa-poo"></i> Désinscrit
+                        {%endif%}
+                    </span>
+
+                </div>
+            </div>
+
+
         </li>
         {% endfor %}
     </ul>

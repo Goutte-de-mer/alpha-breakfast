@@ -1,10 +1,11 @@
 from src.utils.utils_registration import (
     generate_random_password,
     generate_unique_token,
-    create_new_user,
     send_registration_email,
     add_participation,
 )
+from src.utils.misc import create_new_entry
+from src.utils.email import is_valid_email
 from dotenv import load_dotenv
 from flask import Blueprint, request, jsonify, render_template, request
 from src.models import Event, Participation, User, db
@@ -24,7 +25,7 @@ def submit_form():
     lastnames = request.form.getlist("lastname")
     emails = request.form.getlist("email-input")
 
-    event = Event.query.filter_by(date=selected_date).first()
+    event = Event.query.filter_by(id=selected_date).first()
     if not event:
         return "Événement non trouvé", 404
 
@@ -41,6 +42,13 @@ def submit_form():
         )
 
     for name, lastname, email in zip(names, lastnames, emails):
+        if not is_valid_email(email):
+            response_message.append(f"L'adresse e-mail n'est pas valide : {email}")
+            break
+        elif len(name) > 30 or len(lastname) > 30:
+            response_message.append(f"Nom ou prénom trop long")
+            break
+
         existing_user = User.query.filter_by(email=email).first()
 
         if existing_user:
@@ -58,9 +66,14 @@ def submit_form():
         else:
             random_password = generate_random_password()
             unique_token = generate_unique_token(email)
-
-            new_user = create_new_user(
-                name, lastname, email, random_password, unique_token
+            new_user = create_new_entry(
+                User,
+                name=name,
+                lastname=lastname,
+                email=email,
+                password=random_password,
+                role="client",
+                token=unique_token,
             )
             existing_user = new_user
 
@@ -68,7 +81,7 @@ def submit_form():
         add_participation(existing_user, event)
         send_registration_email(email, selected_date, name, lastname, registration_link)
 
-    db.session.commit()
+        db.session.commit()
 
     if response_message:
         return jsonify({"success": False, "message": "\n".join(response_message)})
@@ -100,7 +113,6 @@ def user_reservation_details(unique_token):
                         "description": event.description,
                         "date": event.date,
                         "start_time": event.start_time,
-                        "end_time": event.end_time,
                         "capacity": event.capacity,
                         "status": participation.status,
                     }

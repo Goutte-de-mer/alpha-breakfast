@@ -1,14 +1,28 @@
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
 import smtplib
 from jinja2 import Template
+import re
 
 # Config SMTP
 smtp_server = os.getenv("SMTP_SERVER")
 smtp_port = os.getenv("SMTP_PORT")
 smtp_username = os.getenv("SMTP_USERNAME")
 smtp_password = os.getenv("SMTP_PASSWORD")
+
+email_regex = re.compile(
+    r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+"
+)
+
+
+# Fonction pour valider la conformité de l'email rentré
+def is_valid_email(email):
+    if re.fullmatch(email_regex, email) and len(email) <= 256:
+        return True
+    else:
+        return False
 
 
 # Fonction d'envoi de mail
@@ -57,3 +71,20 @@ def send_email(email, subject, template_name, variables):
     except Exception as e:
         # Gérez d'autres exceptions SMTP ou erreurs génériques ici
         print(f"Erreur lors de l'envoi de l'e-mail : {e}")
+
+
+# Envoi du mail d'annulation d'événement
+def send_cancellation_emails(event, participations):
+    current_date = datetime.now().date()
+
+    if event.date >= current_date:
+        participants_emails = [
+            participation.user.email for participation in participations
+        ]
+
+        email_subject = "Annulation petit déjeuner d'Alpha"
+        email_template_name = "event_cancellation.html"
+        email_variables = {"event_date": event.date, "event_time": event.start_time}
+
+        for email in participants_emails:
+            send_email(email, email_subject, email_template_name, email_variables)

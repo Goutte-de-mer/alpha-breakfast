@@ -1,0 +1,54 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+
+<a class="profile-link transition" href=""><i class="fa-solid fa-user"></i> {{name}}</a>
+
+<h1 class="page-title">créer un événement</h1>
+
+<form action="/create-event" id="create-event-form">
+    <div class="event-title form-input-container">
+        <label for="event-title">Titre de l'événement * :</label>
+        <input type="text" name="event-title" required placeholder="Ex: Petit déjeuner">
+    </div>
+    <div class="description form-input-container">
+        <label for="description">Description :</label>
+        <input type="textarea" name="description" placeholder="Ex: infos supplémentaires">
+    </div>
+    <div class="event-datetime">
+        <div class="date form-input-container">
+            <label for="date">Date * :</label>
+            <input type="date" name="date" id="" required>
+        </div>
+        <div class="start-time form-input-container">
+            <label for="start-time">Heure * :</label>
+            <input type="text" required name="start-time" placeholder="Heure du début">
+        </div>
+        <div class="duration form-input-container">
+            <label for="duration">Durée :</label>
+            <input type="text" name="duration">
+        </div>
+    </div>
+    <div class="capacity form-input-container">
+        <label for="capacity">Nombre de participants maximum * :</label>
+        <input type="number" name="capacity" id="" required>
+    </div>
+    <div class="event-status form-input-container">
+        <label for="status">État des inscriptions * :</label>
+        <select name="event-status" id="">
+            <option value="" disabled selected>---</option>
+            <option value="ouvert">Ouvertes</option>
+            <option value="ferme">Fermées</option>
+        </select>
+    </div>
+    <button type="submit" class="submit-btn">Valider</button>
+</form>
+
+
+<div id="confirmation-message">
+    <iframe class="valid-animation"
+        src="https://lottie.host/?file=1e4fca45-4eca-430b-af02-2213de49742b/zs1oXDWl8D.json"></iframe>
+</div>
+
+
+{% endblock %}

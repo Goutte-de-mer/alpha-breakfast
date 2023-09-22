@@ -1,0 +1,61 @@
+{% extends "base_admin.html" %}
+
+{% block content %}
+
+<a class="profile-link transition" href=""><i class="fa-solid fa-user"></i> {{name}}</a>
+
+<h1 class="page-title">participants</h1>
+{% if participants|length > 0 %}
+<ul class="events-list">
+    {% for participant in participants %}
+    <li class="event">
+
+        <div class="event-details">
+            <div class="fields">
+                <span class="editable-field field" data-event-id="{{ event.id }}">
+                    <span class="label">Prénom : </span> {{ participant.user.name }}
+                </span>
+                <span class="editable-field field" data-event-id="{{ event.id }}">
+                    <span class="label">Nom de famille : </span> {{ participant.user.lastname }}
+                </span>
+                <span class="editable-field field" data-event-id="{{ event.id }}">
+                    <span class="label">E-mail : </span> {{ participant.user.email }}
+                </span>
+            </div>
+
+            <div class="edit-buttons">
+                <button class="edit transition"><i class="fa-solid fa-pen transition"></i></button>
+                <button class="menu-btn transition" data-menu-id="menu-{{ event.id }}"><i
+                        class="fa-solid fa-ellipsis-vertical transition"></i></button>
+
+            </div>
+        </div>
+
+
+    </li>
+    <div id="menu-{{ event.id }}" class="dropdown-menu">
+        <ul>
+            <li class="dropdown-item"><button data-event-id="{{ event.id }}">Désinscrire <i
+                        class="fa-solid fa-ban"></i></button></li>
+            <li class="dropdown-item"><button class="transition" data-event-id="{{ event.id }}"
+                    class="delete-button">Supprimer l'utilisateur<i
+                        class="fa-solid fa-trash-can transition"></i></button></li>
+
+        </ul><!-- '%G@'D8hL?.zS_! -->
+    </div>
+
+    {% endfor %}
+</ul>
+{% else %}
+<p class="no-participant-msg">Il n'y a pas encore de participants pour cet événement.</p>
+<iframe class="tumbleweed-animation"
+    src="https://lottie.host/?file=af414201-aa11-4826-81e5-eb229ecf0140/MSeyhyESUl.json"></iframe>
+{% endif %}
+
+<div id="confirmation-message">
+    <div class="inner-block">
+        <p>L'événement a été supprimé avec succès.</p>
+    </div>
+</div>
+
+{% endblock %}

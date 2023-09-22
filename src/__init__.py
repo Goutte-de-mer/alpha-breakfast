@@ -1,3 +1,4 @@
+import locale
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -7,6 +8,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")
     app.secret_key = "*2|Q#sd_1%6cOxop"
 
     # Configuration de la base de données MySQL
@@ -41,5 +43,13 @@ def create_app():
     from .registration import registration as registration_blueprint
 
     app.register_blueprint(registration_blueprint)
+
+    from .event import event as event_blueprint
+
+    app.register_blueprint(event_blueprint)
+
+    from .user import user as user_blueprint
+
+    app.register_blueprint(user_blueprint)
 
     return app

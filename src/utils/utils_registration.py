@@ -10,7 +10,8 @@ from werkzeug.security import generate_password_hash
 def generate_random_password(length=8):
     alphabet = string.ascii_letters + string.digits + string.punctuation
     password = "".join(secrets.choice(alphabet) for _ in range(length))
-    return password
+    encrypted_password = generate_password_hash(password, method="scrypt")
+    return encrypted_password
 
 
 # Fonction pour générer un jeton unique
@@ -22,21 +23,6 @@ def generate_unique_token(email):
         unique_key.encode(), salt=salt, n=16384, r=8, p=1, maxmem=0
     ).hex()
     return token
-
-
-def create_new_user(name, lastname, email, random_password, unique_token):
-    new_user = User(
-        username=None,
-        name=name,
-        lastname=lastname,
-        password=generate_password_hash(random_password, method="sha256"),
-        email=email,
-        role="client",
-        token=unique_token,
-    )
-    db.session.add(new_user)
-    db.session.flush()
-    return new_user
 
 
 def send_registration_email(email, selected_date, name, lastname, registration_link):

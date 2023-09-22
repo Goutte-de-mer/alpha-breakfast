@@ -26,7 +26,7 @@
 
           <div class="date-select">
             <label for="date-select">Choisissez une date :</label>
-            <select id="date-select" name="date-select">
+            <select id="date-select" name="date-select" required>
               <option value="" disabled selected>---</option>
               {% for event in opened_events %}
               <option value="{{ event.id }}">{{ event.date }}</option>
@@ -58,9 +58,7 @@
           <p class="add-person-btn"><i class="fa-solid fa-plus"></i> Ajouter une personne</p>
 
           <div class="remaining-places">
-            <!-- Display the remaining places here -->
             <div class="remaining-places">
-              <!-- Display the remaining places here for the selected date -->
               <p id="remaining-places-info"></p>
             </div>
           </div>
@@ -75,7 +73,7 @@
   </main>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../static/js/script.js"></script>
+  <script src="../static/js/index.js"></script>
 </body>
 
 </html>

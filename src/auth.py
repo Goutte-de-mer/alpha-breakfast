@@ -1,9 +1,10 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from email_validator import validate_email, EmailNotValidError
-
 from src.models import User, db
+from src.utils.misc import create_new_entry
+from werkzeug.security import generate_password_hash
 
 auth = Blueprint("auth", __name__)
 
@@ -37,16 +38,18 @@ def signup_post():
         flash("L'adresse mail est déjà utilisée")
         return redirect(url_for("auth.signup"))
 
-    new_user = User(
-        email=email,
+    encrypted_password = generate_password_hash(password, method="scrypt")
+
+    create_new_entry(
+        User,
+        username=username,
         name=name,
         lastname=lastname,
-        username=username,
-        password=generate_password_hash(password, method="sha256"),
+        password=encrypted_password,
+        email=email,
         role="admin",
     )
 
-    db.session.add(new_user)
     db.session.commit()
 
     return redirect(url_for("auth.login"))
@@ -69,9 +72,7 @@ def login_post():
 
     if not user or not check_password_hash(user.password, password):
         flash("Votre identifiant ou mot de passe est incorrect")
-        return redirect(
-            url_for("auth.login")
-        )  # if the user doesn't exist or password is wrong, reload the page
+        return redirect(url_for("auth.login"))
 
     login_user(user)
 

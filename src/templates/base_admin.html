@@ -13,20 +13,27 @@
 
 <body>
 
-    <header>
+    <header class="header-admin">
         <div class="logo-alpha">
             <img src="../static/img/logo-alpha.png" alt="">
         </div>
         <ul class="nav-container">
-            <li class="main-menu-item"><a href="">Evénements</a>
+            <li class="main-menu-item dropdown-menu-link">Evénements
+                <i class="fa-solid fa-angle-down"></i>
                 <ul class="submenu">
-                    <li><a href="">Nouvel évenement</a></li>
+                    <li><a href="{{ url_for('main.admin_panel') }}">Voir les événements</a></li>
+                    <li><a href="{{ url_for('event.new_event') }}">Nouvel évenement</a></li>
                 </ul>
             </li>
             <li class="main-menu-item"><a href="">Emails</a></li>
-            <li class="main-menu-item"><a href="">Utilisateurs</a></li>
+            <li class="main-menu-item dropdown-menu-link">Utilisateurs <i class="fa-solid fa-angle-down"></i>
+                <ul class="submenu">
+                    <li><a href="/users/clients">Clients</a></li>
+                    <li><a href="/users/employees">Employés</a></li>
+                </ul>
+            </li>
             <li class="main-menu-item"><a href="">Profil</a></li>
-            <li class="main-menu-item"><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
+            <li class="main-menu-item logout-btn"><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
         </ul>
     </header>
 
@@ -37,7 +44,9 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../static/js/events.js"></script>
+    <script src="../static/js/edit_event.js"></script>
+    <script src="../static/js/menu.js"></script>
+
 </body>
 
 </html>
