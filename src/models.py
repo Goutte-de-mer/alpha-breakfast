@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), nullable=False)
     role = db.Column(db.String(100), nullable=False)
     token = db.Column(db.String(255), nullable=True)
+    newsletter = db.Column(db.Boolean, nullable=True)
 
 
 # Table de liaison entre Event et User
