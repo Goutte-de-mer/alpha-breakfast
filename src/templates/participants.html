@@ -6,9 +6,9 @@
 
 <h1 class="page-title">participants</h1>
 {% if participants|length > 0 %}
-<ul class="events-list">
+<ul class="events-list participants-list" data-event-date="{{event.date}}">
     {% for participant in participants %}
-    <li class="event">
+    <li class="event participant">
 
         <div class="event-details">
             <div class="fields">
@@ -41,11 +41,12 @@
                     class="delete-button">Supprimer l'utilisateur<i
                         class="fa-solid fa-trash-can transition"></i></button></li>
 
-        </ul><!-- '%G@'D8hL?.zS_! -->
+        </ul>
     </div>
 
     {% endfor %}
 </ul>
+<button id="exportButton">Exporter les participants</button>
 {% else %}
 <p class="no-participant-msg">Il n'y a pas encore de participants pour cet événement.</p>
 <iframe class="tumbleweed-animation"
